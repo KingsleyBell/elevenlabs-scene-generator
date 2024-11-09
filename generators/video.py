@@ -12,6 +12,7 @@ from utils.video import get_video_duration
 box_api_key = os.getenv("BOX_API_KEY")
 luma_api_key = os.getenv("LUMA_API_KEY")
 
+
 def generate_video(image_content, prompt, duration):
     image_url = upload_file(image_content, "image/png")
     base_generation = generate_video_base(image_url, prompt)

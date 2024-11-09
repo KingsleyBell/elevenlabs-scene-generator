@@ -42,6 +42,7 @@ def stitch_video(clips, total_duration):
 
 def add_video_clip(canvas, clip):
     file_clip = VideoFileClip(f"output/{clip['file_name']}", audio=False)
+    file_clip = file_clip.resize(width=1600, height=900)
     file_clip = file_clip.set_start(float(clip["start_time"]))
     return CompositeVideoClip([canvas, file_clip])
 
