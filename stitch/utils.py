@@ -13,11 +13,17 @@ def sort_clips(clips):
 
 
 def get_total_video_duration(clips):
+    if not clips:
+        return 0
+
     last_clip = sort_clips(clips)[-1]
     return float(last_clip["start_time"]) + get_video_duration(f"output/{last_clip['file_name']}")
 
 
 def get_total_audio_duration(clips):
+    if not clips:
+        return 0
+
     last_clip = sort_clips(clips)[-1]
     return float(last_clip["start_time"]) + get_audio_duration(
         f"output/{last_clip['file_name']}")
