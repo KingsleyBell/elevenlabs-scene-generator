@@ -6,7 +6,7 @@ from generators.sound_effect import generate_sound_effect
 
 def generate_item(item: dict, files):
     if item["type"] == "VIDEO":
-        return generate_video(files.get("file").read(), item["prompt"], int(item["duration"]))
+        return generate_video(files.get("file").read(), item["prompt"], float(item["duration"]))
     if item["type"] == "CONVERSATION":
         return generate_conversation(item["voice_id"], item["text"])
     if item["type"] == "SOUND_EFFECT":

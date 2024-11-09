@@ -16,7 +16,7 @@ def create_items():
     if request.method == "OPTIONS":
         return {}
     
-    file_name = generate(request.json, request.files)
+    file_name = generate(request.form, request.files)
 
     return {"file_name": file_name}
 
