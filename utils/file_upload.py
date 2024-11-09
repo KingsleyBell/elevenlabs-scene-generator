@@ -12,8 +12,6 @@ def upload_file(content, content_type):
         "Content-Type": content_type
     }
     response = requests.post(url, headers=headers, data=content)
-    print(response.json())
     file_url = response.json()["fileUrl"]
-    print("UPLOAD TMP FILE:", file_url)
     return file_url
 

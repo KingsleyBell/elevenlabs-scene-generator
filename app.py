@@ -55,5 +55,5 @@ def stitch_items():
     if request.method == "OPTIONS":
         return {}
 
-    file_name = stitch(request.form)
+    file_name = stitch(request.json["clips"])
     return {"file_name": file_name}
