@@ -3,5 +3,5 @@ moviepy==1.0.3
 opencv-python==4.10.0.84
 elevenlabs==1.12.1
 lumaai==1.1.0
-
+python-dotenv==1.0.1
 

@@ -17,11 +17,12 @@ def generate(item, files):
     print(files)
     content = generate_item(item, files)
 
-    output_base = f"output/{datetime.datetime.now().strftime('%Y%m%d-%H%M%S.%f')}"
+    output_dir = "output"
+    output_base = f"{datetime.datetime.now().strftime('%Y%m%d-%H%M%S.%f')}"
     file_type = "mp4" if item["type"] == "VIDEO" else "mp3"
-    file_name = f"{output_base}.{file_type}"
+    file_name = f"{output_dir}/{output_base}.{file_type}"
     with open(file_name, "wb") as outfile:
         outfile.write(content)
 
-    return file_name
+    return f"{output_base}.{file_type}"
 
