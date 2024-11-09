@@ -50,7 +50,7 @@ def get_item(file_id: str):
     return {}
 
 
-@app.route("/items", methods=["POST", "OPTIONS"])
+@app.route("/stitch", methods=["POST", "OPTIONS"])
 def stitch_items():
     if request.method == "OPTIONS":
         return {}
