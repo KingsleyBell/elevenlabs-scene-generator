@@ -4,6 +4,7 @@ from generators.video import generate_video
 from generators.conversation import generate_conversation
 from generators.sound_effect import generate_sound_effect
 
+
 def generate_item(item: dict, files):
     if item["type"] == "VIDEO":
         return generate_video(files.get("file").read(), item["prompt"], float(item["duration"]))
@@ -14,7 +15,6 @@ def generate_item(item: dict, files):
 
 
 def generate(item, files):
-    print(files)
     content = generate_item(item, files)
 
     output_dir = "output"

@@ -5,11 +5,13 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from generators.engine import generate
+from stitch.stitcher import stitch
 from utils.file_upload import upload_file
 
 app = Flask(__name__)
 CORS(app)
 load_dotenv()
+
 
 @app.route("/items", methods=["POST", "OPTIONS"])
 def create_items():
@@ -46,3 +48,12 @@ def get_item(file_id: str):
 
         return {"url": image_url}
     return {}
+
+
+@app.route("/items", methods=["POST", "OPTIONS"])
+def stitch_items():
+    if request.method == "OPTIONS":
+        return {}
+
+    file_name = stitch(request.form)
+    return {"file_name": file_name}

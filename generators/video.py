@@ -3,11 +3,11 @@ import os
 import requests
 import time
 
-import cv2
 from lumaai import LumaAI
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
 from utils.file_upload import upload_file
+from utils.video import get_video_duration
 
 box_api_key = os.getenv("BOX_API_KEY")
 luma_api_key = os.getenv("LUMA_API_KEY")
@@ -16,11 +16,11 @@ def generate_video(image_content, prompt, duration):
     image_url = upload_file(image_content, "image/png")
     base_generation = generate_video_base(image_url, prompt)
 
-    generation_duration = get_generation_video_duration(base_generation)
+    generation_duration = get_video_duration(base_generation.assets.video)
 
     while generation_duration < duration:
         base_generation = extend_generation_video(base_generation)
-        generation_duration = get_generation_video_duration(base_generation)
+        generation_duration = get_video_duration(base_generation.assets.video)
 
     return trim_generation_video(base_generation, duration)
 
@@ -35,7 +35,8 @@ def generate_video_base(image_url, prompt):
                 "type": "image",
                 "url": image_url,
             },
-        }
+        },
+        aspect_ratio="16:9"
     )
 
     completed = False
@@ -49,17 +50,6 @@ def generate_video_base(image_url, prompt):
         time.sleep(3)
 
     return generation
-
-
-def get_generation_video_duration(generation):
-    data = cv2.VideoCapture(generation.assets.video)
-
-    frames = data.get(cv2.CAP_PROP_FRAME_COUNT)
-    fps = data.get(cv2.CAP_PROP_FPS)
-
-    duration = round(frames / fps)
-    print("DURATION:", duration)
-    return duration
 
 
 def extend_generation_video(generation):
