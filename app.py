@@ -65,5 +65,6 @@ def enhance_prompt():
     if request.method == "OPTIONS":
         return {}
 
-    enhanced_prompt = generate_prompt(request.json["prompt"])
+    enhanced_prompt = generate_prompt(request.json["prompt"], request.json["type"])
     return {"prompt": enhanced_prompt}
+
