@@ -13,3 +13,9 @@ def generate_conversation(voice_id, text):
         result_bytes += piece
 
     return result_bytes
+
+
+def get_voices():
+    client = ElevenLabs(api_key=eleven_api_key)
+    results = client.voices.get_all()
+
