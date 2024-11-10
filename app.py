@@ -5,6 +5,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from generators.engine import generate
+from generators.prompts import generate_prompt
 from stitch.stitcher import stitch
 from utils.file_upload import upload_file
 
@@ -57,3 +58,12 @@ def stitch_items():
 
     file_name = stitch(request.json["clips"])
     return {"file_name": file_name}
+
+
+@app.route("/prompt", methods=["POST", "OPTIONS"])
+def enhance_prompt():
+    if request.method == "OPTIONS":
+        return {}
+
+    enhanced_prompt = generate_prompt(request.json["prompt"])
+    return {"prompt": enhanced_prompt}
