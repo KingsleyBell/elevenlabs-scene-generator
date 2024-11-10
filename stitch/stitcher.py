@@ -25,8 +25,9 @@ def stitch(clips):
     video = video.set_audio(audio)
 
     output_base = f"{datetime.datetime.now().strftime('%Y%m%d-%H%M%S.%f')}"
-    file_path = f"output/final_video_{output_base}.mp4"
-    video.write_videofile(file_path, audio_codec="aac")
+    file_prefix = "output"
+    file_path = f"final_video_{output_base}.mp4"
+    video.write_videofile(f"{file_prefix}/{file_path}", audio_codec="aac")
 
     return file_path
 
