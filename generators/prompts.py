@@ -52,7 +52,7 @@ def get_video_prompt(prompt: str):
 
 def get_audio_prompt(prompt: str):
     return f"""
-    Rewrite an AI audio generatino prompt. Use the following examples as a guide. Return the raw enhanced prompt as output:
+    Rewrite an low volume AI audio generatino prompt. Use the following examples as a guide. Return the raw enhanced prompt as output:
     
     1. Nature Soundscape
     Create an immersive forest soundscape at dawn, with birds chirping softly, leaves rustling in a gentle breeze, and a distant river flowing, capturing the serenity of early morning in the wilderness
@@ -74,6 +74,8 @@ def get_audio_prompt(prompt: str):
     Create a surreal audio piece of a ticking clock overlaid with shifting ambient sounds reflecting different emotions—gentle rainfall, echoing voices, and distant bells, representing changing thoughts and feelings.
     10. Natural Phenomena: Earth’s Wonders
     Capture the sound of a storm building over the Grand Canyon, with gusting winds, distant thunder, and the calls of birds taking flight, embodying the power and beauty of nature.
+    
+    Output prompt should include instruction to keep vilume low
 
     Here is the prompt: {prompt}
     """
