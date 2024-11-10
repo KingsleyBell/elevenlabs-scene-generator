@@ -17,5 +17,6 @@ def generate_conversation(voice_id, text):
 
 def get_voices():
     client = ElevenLabs(api_key=eleven_api_key)
-    results = client.voices.get_all()
+    return client.voices.get_all()
+
 
